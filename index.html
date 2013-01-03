@@ -26,6 +26,7 @@
 
       $.post("chained.php", {id:id }, function(data){
         $("select#select_id2").html(data);
+        $("select#select_id3").html('');
       });
   });
 
