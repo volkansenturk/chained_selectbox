@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  </head>
+  <body>
+  	<select name="selectName1" multiple="multiple" id="select_id1">
+		<option value="1">t_1</option>
+		<option value="2">t_2</option>
+		<option value="3">t_3</option>
+	</select>
+
+  	<select name="selectName2" multiple="multiple" id="select_id2">
+	</select>
+  	
+  	<select name="selectName3" multiple="multiple" id="select_id3">
+	</select>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+   $("select#select_id1").live("change", function () {
+      var id = $(this).val();
+
+      $.post("chained.php", {id:id }, function(data){
+        $("select#select_id2").html(data);
+      });
+  });
+
+  $("select#select_id2").live("change", function () {
+      var id = $(this).val();
+
+      $.post("chained.php", {id:id }, function(data){
+        $("select#select_id3").html(data);
+      });
+  });
+
+
+    });
+  </script>
+	
+  </body>
+</html>
